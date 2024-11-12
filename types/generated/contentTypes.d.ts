@@ -369,6 +369,39 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiOeuvreOeuvre extends Struct.CollectionTypeSchema {
+  collectionName: 'oeuvres';
+  info: {
+    displayName: 'oeuvre';
+    pluralName: 'oeuvres';
+    singularName: 'oeuvre';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    images: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::oeuvre.oeuvre'
+    > &
+      Schema.Attribute.Private;
+    nom: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiRetestRetest extends Struct.CollectionTypeSchema {
   collectionName: 'retests';
   info: {
@@ -931,6 +964,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::oeuvre.oeuvre': ApiOeuvreOeuvre;
       'api::retest.retest': ApiRetestRetest;
       'api::test.test': ApiTestTest;
       'plugin::content-releases.release': PluginContentReleasesRelease;
