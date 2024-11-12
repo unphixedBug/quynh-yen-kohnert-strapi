@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "retests",
+  "info": {
+    "singularName": "retest",
+    "pluralName": "retests",
+    "displayName": "retest"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "retest": {
+      "type": "string"
+    }
+  }
+}

@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = ({ env }) => {
-  const client = env('DATABASE_CLIENT', 'postgres');
+  const client = env('DATABASE_CLIENT', 'sqlite'); // 'sqlite' en local, 'postgres' en production via .env
 
   const connections = {
     mysql: {
@@ -53,7 +53,7 @@ module.exports = ({ env }) => {
   return {
     connection: {
       client,
-      ...connections[client],
+      ...connections[client],  // Utilise la connexion appropriée basée sur DATABASE_CLIENT
       acquireConnectionTimeout: env.int('DATABASE_CONNECTION_TIMEOUT', 60000),
     },
   };
