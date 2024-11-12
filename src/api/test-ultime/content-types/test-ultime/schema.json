@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "test_ultimes",
+  "info": {
+    "singularName": "test-ultime",
+    "pluralName": "test-ultimes",
+    "displayName": "test ultime"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "ult": {
+      "type": "string"
+    }
+  }
+}

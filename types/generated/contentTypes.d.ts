@@ -430,6 +430,34 @@ export interface ApiRetestRetest extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiTestUltimeTestUltime extends Struct.CollectionTypeSchema {
+  collectionName: 'test_ultimes';
+  info: {
+    displayName: 'test ultime';
+    pluralName: 'test-ultimes';
+    singularName: 'test-ultime';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::test-ultime.test-ultime'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    ult: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiTestTest extends Struct.CollectionTypeSchema {
   collectionName: 'tests';
   info: {
@@ -966,6 +994,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::oeuvre.oeuvre': ApiOeuvreOeuvre;
       'api::retest.retest': ApiRetestRetest;
+      'api::test-ultime.test-ultime': ApiTestUltimeTestUltime;
       'api::test.test': ApiTestTest;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
